@@ -11,6 +11,7 @@ import {
   Avatar,
   Card,
   IconButton,
+  Input,
 } from "@material-tailwind/react";
 import {
   CubeTransparentIcon,
@@ -129,12 +130,28 @@ export default function ComplexNavbar() {
         <Typography
           as="a"
           href="#"
-          className="mr-4 ml-2 cursor-pointer py-1.5 font-bold"
+          className="mr-20 ml-4 cursor-pointer py-1.5 font-bold"
         >
           outside
         </Typography>
-        <div className="hidden lg:block">
-          {/* <NavList /> */}
+        
+        <div className="relative flex w-full gap-2 md:w-max">
+          <Input
+            type="search"
+            color="black"
+            label="Type here..."
+            className="pr-20"
+            containerProps={{
+              className: "min-w-[288px] ml-[800px]",
+            }}
+          />
+          <Button
+            size="sm"
+            color="white"
+            className="!absolute right-1 top-1 rounded"
+          >
+            Search
+          </Button>
         </div>
         <IconButton
           size="sm"
@@ -146,10 +163,11 @@ export default function ComplexNavbar() {
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
  
+        
+        <ProfileMenu />
         <Button size="sm" variant="text">
           <span>SIGN UP</span>
         </Button>
-        <ProfileMenu />
       </div>
       <MobileNav open={isNavOpen} className="overflow-scroll">
         

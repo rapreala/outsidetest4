@@ -178,6 +178,8 @@ export default function StickyNavbar() {
 import React from 'react';
 import Hero from './Hero';
 import ComplexNavbar from './Header';
+import Image from 'next/image';
+import Flag from '../public/images/flag.jpg'
 
 
 const data = [
@@ -266,10 +268,10 @@ const HomePage = () => {
         <ComplexNavbar />
       </div>
       <Hero />
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
+      <div className="container px-4 py-6 mx-auto gap-10">
+        <div className="max-w-4xl mx-auto">
           <div className="flex flex-col lg:flex-row">
-            <div className="flex-1 mr-16">
+            <div className="flex-1 mr-32">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Outside in Rwanda - Your adventure awaits!</h2>
 
               <p className="text-gray-600 mb-4">
@@ -290,12 +292,14 @@ const HomePage = () => {
 
               <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded">List an Experience</button>
             </div>
-
             <div className="flex-shrink-0">
-              <img src="/image.jpg" alt="Image" className="w-48 h-48 object-cover rounded-full" />
+              <Image src={Flag} alt="Image" className="w-80 h-[500px] object-cover rounded" />
             </div>
+            
           </div>
+          
         </div>
+        
       </div>
       {/* Content Block End */}
 
