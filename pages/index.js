@@ -186,7 +186,7 @@ import Flag from '../public/images/flag.jpg'
 
 
 
-
+/*
 const data = [
   {
     category: "Happening This Week",
@@ -248,7 +248,7 @@ const ListingBlock = () => {
             <div className="grid grid-cols-4 gap-4">
               {category.listings.slice(0, 4).map((listing) => (
                 <div key={listing.title} className="rounded-lg shadow-md">
-                  <Image src={listing.imageUrl} alt={listing.title} className="w-full h-48 object-cover rounded-top" />
+                  <Image src={listing.imageUrl} alt={listing.title} className="width-full h-48 object-cover rounded-top" />
                   <div className="p-4">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{listing.title}</h4>
                     <p className="text-gray-600 mb-4">{listing.description}</p>
@@ -265,6 +265,7 @@ const ListingBlock = () => {
 };
 
 
+*/
 
 const HomePage = () => {
   return (
@@ -308,7 +309,7 @@ const HomePage = () => {
       </div>
       {/* Content Block End */}
 
-      <ListingBlock />
+      {/* <ListingBlock /> */}
 
     
     </div>
