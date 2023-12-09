@@ -182,6 +182,11 @@ import Image from 'next/image';
 import Flag from '../public/images/flag.jpg'
 
 
+
+
+
+
+
 const data = [
   {
     category: "Happening This Week",
@@ -189,22 +194,22 @@ const data = [
       {
         title: "Gorilla Trekking in Volcanoes National Park",
         description: "Embark on an unforgettable adventure through the lush rainforests of Volcanoes National Park and encounter the majestic mountain gorillas in their natural habitat.",
-        imageUrl: "/image1.jpg",
+        imageUrl: "../public/images/BookingImage1.jpeg",
       },
       {
         title: "Kigali's Vibrant Bar Scene",
         description: "Immerse yourself in Kigali's electrifying nightlife, exploring trendy bars, live music venues, and rooftop lounges that offer stunning city views.",
-        imageUrl: "/image2.jpg",
+        imageUrl: "../public/images/BookingImage2.jpeg",
       },
       {
         title: "Culinary Delights Await",
         description: "Savor the flavors of Rwanda's culinary scene, from traditional Rwandan cuisine to international fine dining experiences.",
-        imageUrl: "/image3.jpg",
+        imageUrl: "../public/images/BookingImage3.jpeg",
       },
       {
         title: "Experience Rwanda's Artistic Expressions",
         description: "Explore Rwanda's vibrant arts scene, visiting galleries, attending cultural performances, and discovering local artisans' creations.",
-        imageUrl: "/image4.jpg",
+        imageUrl: "../public/images/BookingImage4.jpeg",
       },
     ],
   },
@@ -214,17 +219,17 @@ const data = [
       {
         title: "Discover Kigali's Vibrant Bar Scene",
         description: "Immerse yourself in Kigali's electrifying nightlife, exploring trendy bars, live music venues, and rooftop lounges that offer stunning city views.",
-        imageUrl: "/image2.jpg",
+        imageUrl: "../public/images/BookingImage5.jpeg",
       },
       {
         title: "Live Music Experiences",
         description: "Catch a live performance at one of Kigali's many music venues, showcasing local and international artists.",
-        imageUrl: "/image5.jpg",
+        imageUrl: "../public/images/BookingImage6.jpeg",
       },
       {
         title: "Rooftop Bars with City Views",
         description: "Unwind with a drink and enjoy panoramic city views from one of Kigali's rooftop bars.",
-        imageUrl: "/image6.jpg",
+        imageUrl: "../public/images/BookingImage6.jpeg",
       },
     ],
   },
@@ -243,7 +248,7 @@ const ListingBlock = () => {
             <div className="grid grid-cols-4 gap-4">
               {category.listings.slice(0, 4).map((listing) => (
                 <div key={listing.title} className="rounded-lg shadow-md">
-                  <img src={listing.imageUrl} alt={listing.title} className="w-full h-48 object-cover rounded-top" />
+                  <Image src={listing.imageUrl} alt={listing.title} className="w-full h-48 object-cover rounded-top" />
                   <div className="p-4">
                     <h4 className="text-lg font-bold text-gray-900 mb-2">{listing.title}</h4>
                     <p className="text-gray-600 mb-4">{listing.description}</p>
@@ -275,7 +280,7 @@ const HomePage = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Outside in Rwanda - Your adventure awaits!</h2>
 
               <p className="text-gray-600 mb-4">
-                We're on a mission to showcase and promote Rwanda's rich art, culture, and design heritage, while also providing tourists with a seamless booking experience.
+                We&apos;re on a mission to showcase and promote Rwanda&apos;s rich art, culture, and design heritage, while also providing tourists with a seamless booking experience.
               </p>
 
               <h3 className="text-2xl font-bold text-gray-900 mb-4">For tourists:</h3>
@@ -287,7 +292,7 @@ const HomePage = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">For listing hosts:</h3>
 
               <p className="text-gray-600 mb-4">
-                Get more visibility for your experiences and seamless bookings with a variety of payment options. We're here to help you share Rwanda's beauty with the world. List your experience today!
+                Get more visibility for your experiences and seamless bookings with a variety of payment options. We&apos;re here to help you share Rwanda&apos;s beauty with the world. List your experience today!
               </p>
 
               <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded">List an Experience</button>
