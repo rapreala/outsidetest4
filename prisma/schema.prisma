@@ -1,0 +1,89 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id        String   @id @unique
+  firstName String
+  lastName  String
+  email     String   @unique
+  image     String?
+  listings  Listing[]
+  bookings  Booking[]
+  likes     Like[]
+  searches  Search[]
+  role     UserRole   @default(NORMAL)
+}
+
+enum UserRole {
+  NORMAL
+  ALPHA
+}
+
+model Listing {
+  id                 String   @id @unique
+  listingName        String
+  hostName          String
+  images             String[]
+  shortCaption       String
+  description        String
+  startDate          DateTime
+  endDate            DateTime
+  location           String
+  latitude          Float?
+  longitude         Float?
+  likes             Like[] {
+    @relation(fields: [listingId], references: [id])
+  }
+  bookings          Booking[] {
+    @relation(fields: [listingId], references: [id])
+  }
+  user              User    {
+    @relation(fields: [hostId], references: [id])
+  }
+  hostId           String
+}
+
+model Like {
+  id        String   @id @unique
+  user      User    {
+    @relation(fields: [userId], references: [id])
+  }
+  userId    String
+  listing  Listing  {
+    @relation(fields: [listingId], references: [id])
+  }
+  listingId String
+}
+
+model Booking {
+  id          String   @id @unique
+  listingName String
+  request     String?
+  user        User    {
+    @relation(fields: [userId], references: [id])
+  }
+  userId      String
+  listing     Listing  {
+    @relation(fields: [listingId], references: [id])
+  }
+  listingId   String
+}
+
+model Search {
+  id         String   @id @unique
+  keyword    String
+  timestamp  DateTime @default(now())
+  user      User?    {
+    @relation(fields: [userId], references: [id])
+  }
+  userId    String?
+}
