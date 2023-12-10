@@ -6,7 +6,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  directUrl = env("postgres://default:5TsLgnoabf4U@ep-shiny-band-00776485.us-east-1.postgres.vercel-storage.com:5432/verceldb")
+  url = env("postgres://default:5TsLgnoabf4U@ep-shiny-band-00776485-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb?pgbouncer=true&connect_timeout=15") 
+  directUrl = env("postgres://default:5TsLgnoabf4U@ep-shiny-band-00776485.us-east-1.postgres.vercel-storage.com:5432/verceldb") 
 }
 
 model User {
