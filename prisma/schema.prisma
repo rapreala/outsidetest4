@@ -75,6 +75,6 @@ model Coordinates {
   latitude Float
   longitude Float
 
-  listings Listing[] @relation(fields: [listingId], references: [id])
+  listings Listing[] @relation
   listingId String
 }
