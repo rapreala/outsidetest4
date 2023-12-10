@@ -125,24 +125,27 @@ export default function ComplexNavbar() {
   }, []);
  
   return (
-    <Navbar className="max-w-full w-full p-2 lg:rounded-full border-solid border-2 border-indigo-600">
-      <div className="relative mx-auto flex items-center justify-between text-blue-gray-900">
+<div className="w-screen relative">
+<Navbar className=" mx-auto max-w-screen p-2 top-5 absolute fixed  z-50 left-0 right-0 mx-auto lg:rounded-full lg:pl-6">
+      < div className="w-full flex justify-between">
+        <div className="w-full">
+        <div className="relative  mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
           href="#"
-          className="mr-20 ml-4 cursor-pointer py-1.5 font-bold"
+          className="mr-10 ml-[-10] tracking-widest cursor-pointer py-1.5 bg-red font-bold text-3xl"
         >
           outside
         </Typography>
         
-        <div className="relative flex w-full gap-2 md:w-max">
+        <div className="relative flex w-full mr-5 gap-2 md:w-max">
           <Input
             type="search"
             color="black"
             label="Type here..."
             className="pr-20"
             containerProps={{
-              className: "min-w-[288px] ml-[800px]",
+              className: "min-w-[288px] ml-[auto]",
             }}
           />
           <Button
@@ -152,6 +155,9 @@ export default function ComplexNavbar() {
           >
             Search
           </Button>
+        </div>
+        </div>
+
         </div>
         <IconButton
           size="sm"
@@ -173,5 +179,6 @@ export default function ComplexNavbar() {
         
       </MobileNav>
     </Navbar>
+</div>
   );
 }

@@ -13,10 +13,11 @@ import Image from 'next/image';
  
 const Hero = () => {
   return (
-    <Carousel
-      className="rounded-xl"
+    <div className=""> 
+      <Carousel
+      className="rounded-xl h-screen"
       navigation={({ setActiveIndex, activeIndex, length }) => (
-        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+        <div className="absolute fixed bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
           {new Array(length).fill("").map((_, i) => (
             <span
               key={i}
@@ -54,7 +55,7 @@ const Hero = () => {
       <Image
         src={hero5Image}
         alt="image 5"
-        className="h-quarter w-full object-cover"
+        className="h-full w-full object-cover"
       />
       {/* <Image
         src={hero6Image}
@@ -69,6 +70,7 @@ const Hero = () => {
 
 
     </Carousel>
+    </div>
   );
 }
 export default Hero;

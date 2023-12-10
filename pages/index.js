@@ -270,8 +270,8 @@ const ListingBlock = () => {
 const HomePage = () => {
   return (
     <div>
-      <div className="w-full">
-        <ComplexNavbar />
+      <div>
+        <ComplexNavbar/>
       </div>
       <Hero />
       <div className="container px-4 py-6 mx-auto gap-10">
