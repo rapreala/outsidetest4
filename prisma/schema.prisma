@@ -1,80 +1,81 @@
 // schema.prisma
 
 generator client {
- provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
- provider = "postgresql"
- url      = env("POSTGRES_PRISMA_URL") 
- directUrl = env("POSTGRES_URL_NON_POOLING") 
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model User {
- id        String   @id @unique
- firstName String
- lastName String
- email     String   @unique
- image     String?
- role      UserRole @default(NORMAL)
+  id        String   @id @unique
+  firstName String
+  lastName  String
+  email     String   @unique
+  image     String?
+  role      UserRole @default(NORMAL)
 
- listings Listing[] @relation("Listing_user")
- bookings Booking[] @relation("Booking_user")
- likes     Like[]     @relation("Like_user")
- searches Search[]   @relation("Search_user")
+  listings Listing[] @relation("Listing_user")
+  bookings Booking[] @relation("Booking_user")
+  likes    Like[]    @relation("Like_user")
+  searches Search[]  @relation("Search_user")
 }
 
 enum UserRole {
- NORMAL
- ALPHA
+  NORMAL
+  ALPHA
 }
 
 model Listing {
- id        String   @id @unique
- name      String
- host      User     @relation("Listing_user", fields: [hostId], references: [id])
- hostId    String
- images    String[]
- shortCaption String
- description String
- startDate DateTime
- endDate    DateTime
- location   String
- coordinates Coordinates?
- likes     Like[]   @relation("Like_listing")
- bookings Booking[] @relation("Booking_listing")
+  id            String       @id @unique
+  name          String
+  host          User         @relation("Listing_user", fields: [hostId], references: [id])
+  hostId        String
+  images        String[]
+  shortCaption  String
+  description   String
+  startDate     DateTime
+  endDate       DateTime
+  location      String
+  coordinates   Coordinates? @relation(fields: [coordinatesId], references: [id])
+  likes         Like[]       @relation("Like_listing")
+  bookings      Booking[]    @relation("Booking_listing")
+  coordinatesId String?
 }
 
 model Like {
- id        String   @id @unique
- user      User     @relation("Like_user", fields: [userId], references: [id])
- userId    String
- listing   Listing @relation("Like_listing", fields: [listingId], references: [id])
- listingId String
+  id        String  @id @unique
+  user      User    @relation("Like_user", fields: [userId], references: [id])
+  userId    String
+  listing   Listing @relation("Like_listing", fields: [listingId], references: [id])
+  listingId String
 }
 
 model Booking {
- id        String   @id @unique
- user      User     @relation("Booking_user", fields: [userId], references: [id])
- userId    String
- listing   Listing @relation("Booking_listing", fields: [listingId], references: [id])
- listingId String
- request   String?
+  id        String  @id @unique
+  user      User    @relation("Booking_user", fields: [userId], references: [id])
+  userId    String
+  listing   Listing @relation("Booking_listing", fields: [listingId], references: [id])
+  listingId String
+  request   String?
 }
 
 model Search {
- id        String   @id @unique
- keyword   String
- timestamp DateTime @default(now())
- user      User?    @relation("Search_user", fields: [userId], references: [id])
- userId    String?
+  id        String   @id @unique
+  keyword   String
+  timestamp DateTime @default(now())
+  user      User?    @relation("Search_user", fields: [userId], references: [id])
+  userId    String?
 }
 
 model Coordinates {
-  id        String   @id @unique
-  latitude Float
+  id        String @id @unique
+  latitude  Float
   longitude Float
 
-  listings Listing[] @relation
+  listings  Listing[] @relation
   listingId String
 }
