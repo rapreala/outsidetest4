@@ -31,15 +31,6 @@ enum UserRole {
   ALPHA
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
-}
 
 // Define categories as an enum
 enum Category {
