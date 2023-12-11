@@ -31,23 +31,55 @@ enum UserRole {
   ALPHA
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+// Define categories as an enum
+enum Category {
+  Nightlife
+  FineDining
+  CultureAndHeritage
+  AdventureAndRelaxation
+  NatureAndWildlife
+  Sports
+  ArtAndMusic
+}
+
+// Modify the Listing model to include categories
 model Listing {
-  id            String       @id @unique
-  name          String
-  host          User         @relation("Listing_user", fields: [hostId], references: [id])
-  hostId        String
-  images        String[]
-  shortCaption  String
-  description   String
-  startDate     DateTime
-  endDate       DateTime
-  location      String
-  coordinates   Coordinates? @relation(fields: [coordinatesId], references: [id])
-  likes         Like[]       @relation("Like_listing")
-  bookings      Booking[]    @relation("Booking_listing")
-  coordinatesId String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id                 String       @id @unique
+  name               String
+  host               User        @relation("Listing_user", fields: [hostId], references: [id])
+  hostId            String
+  images             String[]
+  shortCaption      String
+  description        String
+  startDate          DateTime
+  endDate            DateTime
+  location            String
+  coordinates        Coordinates? @relation(fields: [coordinatesId], references: [id])
+  likes              Like[]       @relation("Like_listing")
+  bookings           Booking[]     @relation("Booking_listing")
+  coordinatesId     String?
+  categories        Category[]  @relation(fields: [listingId], references: [id])
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+}
+
+// Add a relation field to link Category and Listing models
+model Category {
+  id          String @id @unique
+  listings    Listing[] @relation(fields: [listingId], references: [id])
+  listingId  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Like {
