@@ -59,13 +59,13 @@ model Listing {
   likes              Like[]       @relation("Like_listing")
   bookings           Booking[]     @relation("Booking_listing")
   coordinatesId     String?
-  categories        Category[]  @relation(fields: [listingId], references: [id])
+  categories        ListingCategory[]  @relation(fields: [listingId], references: [id])
   createdAt          DateTime     @default(now())
   updatedAt          DateTime     @updatedAt
 }
 
 // Add a relation field to link Category and Listing models
-model Category {
+model ListingCategory {
   id          String @id @unique
   listings    Listing[] @relation(fields: [listingId], references: [id])
   listingId  String
