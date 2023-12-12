@@ -11,40 +11,40 @@ import prisma from '../lib/prisma';
 
 // import CategoryListings from './CategoryListings';
 
-// const listing = {
-//   id: "123",
-//   name: "Cozy Beachfront Cabin",
-//   images: ["https://res.cloudinary.com/dxb8sk5iu/image/upload/v1702287458/EXPERIENCES/Culture%20and%20Heritage/IMG_856FA872438A-1_vmnh9a.jpg"],
-//   shortCaption: "Relax and unwind with ocean views",
-//   startDate: "2023-12-25",
-//   host: {
-//     username: "John Doe",
-//   },
-// };
-export const getStaticProps = async () => {
-  try {
-    // Replace with your actual availability criteria
-    const listings = await prisma.listing.findMany({
-      include: {
-        // images: true,
-        // name: true,
-        // shortCaption: true,
-        // startDate: true,
-        host: {
-          select: { username: true },
-        },
-      },
-    });
-
-    return {
-      props: { listings },
-      revalidate: 10, // Adjust revalidation time as needed
-    };
-  } catch (error) {
-    console.error('Error fetching listings:', error); // Consider proper error handling
-    return { props: {listings: [],},} 
-  };
+const listing = {
+  id: "123",
+  name: "Cozy Beachfront Cabin",
+  images: ["https://res.cloudinary.com/dxb8sk5iu/image/upload/v1702287458/EXPERIENCES/Culture%20and%20Heritage/IMG_856FA872438A-1_vmnh9a.jpg"],
+  shortCaption: "Relax and unwind with ocean views",
+  startDate: "2023-12-25",
+  host: {
+    username: "John Doe",
+  },
 };
+// export const getStaticProps = async () => {
+//   try {
+//     // Replace with your actual availability criteria
+//     const listings = await prisma.listing.findMany({
+//       include: {
+//         // images: true,
+//         // name: true,
+//         // shortCaption: true,
+//         // startDate: true,
+//         host: {
+//           select: { username: true },
+//         },
+//       },
+//     });
+
+//     return {
+//       props: { listings },
+//       revalidate: 10, // Adjust revalidation time as needed
+//     };
+//   } catch (error) {
+//     console.error('Error fetching listings:', error); // Consider proper error handling
+//     return { props: {listings: [],},} 
+//   };
+// };
 
 
 const HomePage = (props) => {
@@ -89,15 +89,7 @@ const HomePage = (props) => {
       </div>
       {/* Content Block End */}
       
-      {/* <ListingCard listing={listings} /> */}
-
-      {props.listings.map((listing) => (
-            <div key={listing.id}>
-              <ListingCard listing={listing} />
-            </div>
-          ))}
-
-      {/* <ListingBlock /> */}
+      <ListingCard listing={listing} />
       
 
     
