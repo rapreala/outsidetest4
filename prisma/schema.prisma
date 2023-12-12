@@ -39,20 +39,20 @@ model Category {
 
 model Listing {
   id            Int @id @unique @default(autoincrement())
-  name          String @default(cuid())
+  name          String 
   host          User   @relation("Listing_user", fields: [hostId], references: [id])
   hostId        Int
-  images        String[] @default(cuid())
-  shortCaption  String @default(cuid())
-  description   String @default(cuid())
+  images        String[] 
+  shortCaption  String 
+  description   String 
   startDate     DateTime
   endDate       DateTime
-  location      String @default(cuid())
+  location      String 
   coordinates   Coordinates? @relation(fields: [coordinatesId], references: [id])
   likes         Like[]        @relation("Like_listing")
   bookings      Booking[]      @relation("Booking_listing")
   coordinatesId Int?
-  categories    Category[] @default(cuid())
+  categories    Category[] 
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
