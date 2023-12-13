@@ -8,19 +8,44 @@ import Flag from '../public/images/flag.jpg';
 import ListingCard from './ListingCard';
 import prisma from '../lib/prisma';
 
+export async function getStaticProps() {
+  try {
+    const listings = await prisma.listing.findMany({
+      include: {
+        host: true,
+        categories: true,
+      },
+    });
+
+
+    return {
+      props: {
+        listings: JSON.parse(JSON.stringify(listings)), // Convert Prisma objects to plain JSON
+      },
+      revalidate: 10, // Adjust revalidation time as needed
+    };
+  } catch (error) {
+    console.error('Error fetching listings:', error);
+    return {
+      props: {
+        listings: [],
+      },
+    };
+  }
+}
 
 // import CategoryListings from './CategoryListings';
 
-const listing = {
-  id: "123",
-  name: "Cozy Beachfront Cabin",
-  images: ["https://res.cloudinary.com/dxb8sk5iu/image/upload/v1702287458/EXPERIENCES/Culture%20and%20Heritage/IMG_856FA872438A-1_vmnh9a.jpg"],
-  shortCaption: "Relax and unwind with ocean views",
-  startDate: "2023-12-25",
-  host: {
-    username: "John Doe",
-  },
-};
+// const listing = {
+//   id: "123",
+//   name: "Cozy Beachfront Cabin",
+//   images: ["https://res.cloudinary.com/dxb8sk5iu/image/upload/v1702287458/EXPERIENCES/Culture%20and%20Heritage/IMG_856FA872438A-1_vmnh9a.jpg"],
+//   shortCaption: "Relax and unwind with ocean views",
+//   startDate: "2023-12-25",
+//   host: {
+//     username: "John Doe",
+//   },
+// };
 // export const getStaticProps = async () => {
 //   try {
 //     // Replace with your actual availability criteria
@@ -89,7 +114,18 @@ const HomePage = (props) => {
       </div>
       {/* Content Block End */}
       
-      <ListingCard listing={listing} />
+      {/* <ListingCard listing={listing} /> */}
+      <div className="container mx-auto">
+
+        {props.listings.length > 0 ? (
+          props.listings.map((listing) => (
+            <ListingCard key={listing.id} listing={listing} />
+          ))
+        ) : (
+          <p>No listings available.</p>
+        )}
+      </div>
+
       
 
     

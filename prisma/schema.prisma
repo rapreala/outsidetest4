@@ -90,6 +90,7 @@ model Search {
 
 model Coordinates {
   id        Int @id @unique @default(autoincrement())
+  name      String
   latitude  Float
   longitude Float
   listingId Int
