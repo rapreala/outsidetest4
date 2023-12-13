@@ -1,4 +1,5 @@
 import React from "react";
+import SignIn from './SignIn'
 import {
   Navbar,
   MobileNav,
@@ -171,9 +172,9 @@ export default function ComplexNavbar() {
  
         
         <ProfileMenu />
-        <Button size="sm" variant="text">
-          <span>SIGN UP</span>
-        </Button>
+        <SignIn size="sm" variant="text">
+          <span>SIGN IN</span>
+        </SignIn>
       </div>
       <MobileNav open={isNavOpen} className="overflow-scroll">
         
