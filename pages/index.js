@@ -5,72 +5,36 @@ import ComplexNavbar from './Header';
 import Image from 'next/image';
 import Flag from '../public/images/flag.jpg';
 // import ListingCard from './listings/[id]';
-import ListingCard from './ListingCard';
+import CategoryCard from './CategoryCard';
 import prisma from '../lib/prisma';
 
 export async function getStaticProps() {
   try {
-    const listings = await prisma.listing.findMany({
+    const categories = await prisma.category.findMany({
       include: {
-        host: true,
-        categories: true,
+        listings: {
+          include: {
+            host: true,
+          },
+        },
       },
     });
 
-
     return {
       props: {
-        listings: JSON.parse(JSON.stringify(listings)), // Convert Prisma objects to plain JSON
+        categories: JSON.parse(JSON.stringify(categories)),
       },
-      revalidate: 10, // Adjust revalidation time as needed
+      revalidate: 10,
     };
   } catch (error) {
-    console.error('Error fetching listings:', error);
+    console.error('Error fetching categories:', error);
     return {
       props: {
-        listings: [],
+        categories: [],
       },
     };
   }
 }
-
-// import CategoryListings from './CategoryListings';
-
-// const listing = {
-//   id: "123",
-//   name: "Cozy Beachfront Cabin",
-//   images: ["https://res.cloudinary.com/dxb8sk5iu/image/upload/v1702287458/EXPERIENCES/Culture%20and%20Heritage/IMG_856FA872438A-1_vmnh9a.jpg"],
-//   shortCaption: "Relax and unwind with ocean views",
-//   startDate: "2023-12-25",
-//   host: {
-//     username: "John Doe",
-//   },
-// };
-// export const getStaticProps = async () => {
-//   try {
-//     // Replace with your actual availability criteria
-//     const listings = await prisma.listing.findMany({
-//       include: {
-//         // images: true,
-//         // name: true,
-//         // shortCaption: true,
-//         // startDate: true,
-//         host: {
-//           select: { username: true },
-//         },
-//       },
-//     });
-
-//     return {
-//       props: { listings },
-//       revalidate: 10, // Adjust revalidation time as needed
-//     };
-//   } catch (error) {
-//     console.error('Error fetching listings:', error); // Consider proper error handling
-//     return { props: {listings: [],},} 
-//   };
-// };
-
 
 const HomePage = (props) => {
   return (
@@ -116,14 +80,9 @@ const HomePage = (props) => {
       
       {/* <ListingCard listing={listing} /> */}
       <div className="container mx-auto">
-
-        {props.listings.length > 0 ? (
-          props.listings.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
-          ))
-        ) : (
-          <p>No listings available.</p>
-        )}
+        {props.categories.map((category) => (
+          <CategoryCard key={category.id} category={category} />
+        ))}
       </div>
 
       
