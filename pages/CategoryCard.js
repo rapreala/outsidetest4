@@ -23,9 +23,9 @@ const CategoryCard = ({ category }) => {
         ))}
       </div>
 
-      {/* <Link href={`/categories/${name.toLowerCase()}`}>
-        <a className="text-blue-500 font-medium mt-4 inline-block">View All {name} Listings</a>
-      </Link> */}
+      <Link href={`/categories/${name.toLowerCase()}`}>
+        View All {name} Listings
+      </Link>
     </div>
   );
 };
