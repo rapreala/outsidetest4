@@ -15,17 +15,21 @@ const CategoryCard = ({ category }) => {
 
   return (
     <div className="mb-8">
+        <div>
       <h2 className="text-2xl font-bold text-gray-900 mb-4">{name}</h2>
+      <Link href={`/categories/${name.toLowerCase()}`} className="text-blue-500 font-medium mt-4 inline-block">
+        View All {name} Listings
+      </Link>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {firstFourListings.map((listing) => (
           <ListingCard key={listing.id} listing={listing} />
         ))}
+
+     
       </div>
 
-      <Link href={`/categories/${name.toLowerCase()}`}>
-        View All {name} Listings
-      </Link>
     </div>
   );
 };
