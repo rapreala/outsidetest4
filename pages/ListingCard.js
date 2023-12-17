@@ -80,7 +80,16 @@ const ListingCard = ({ listing }) => {
   return (
     <Card className="w-full max-w-[26rem] shadow-lg mb-8">
       <CardHeader floated={false} color="blue-gray">
-        <Image src={images[0]} alt="Listing Image" className="w-full h-48 object-cover rounded-t" />
+      <div className="relative h-48">
+          <Image
+            src={images[0]}
+            alt="Listing Image"
+            className="object-cover rounded-t"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+          />
+        </div>
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
         <IconButton size="sm" color="red" variant="text" className="!absolute top-4 right-4 rounded-full">
           {/* Your close button icon */}
