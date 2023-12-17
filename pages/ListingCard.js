@@ -62,6 +62,7 @@
 
 // components/ListingCard.js
 import React from 'react';
+import Image from 'next/image';
 import {
   Card,
   CardHeader,
@@ -79,7 +80,7 @@ const ListingCard = ({ listing }) => {
   return (
     <Card className="w-full max-w-[26rem] shadow-lg mb-8">
       <CardHeader floated={false} color="blue-gray">
-        <img src={images[0]} alt="Listing Image" className="w-full h-48 object-cover rounded-t" />
+        <Image src={images[0]} alt="Listing Image" className="w-full h-48 object-cover rounded-t" />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
         <IconButton size="sm" color="red" variant="text" className="!absolute top-4 right-4 rounded-full">
           {/* Your close button icon */}
