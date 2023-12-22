@@ -1,5 +1,5 @@
 import React from "react";
-import SignIn from './SignIn'
+import SignInButton from './SignInButton'
 import {
   Navbar,
   MobileNav,
@@ -115,6 +115,7 @@ function ProfileMenu() {
  
 export default function ComplexNavbar() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
+  const [isSignedIn, setIsSignedIn] = React.useState(false);
  
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
  
@@ -171,10 +172,15 @@ export default function ComplexNavbar() {
         </IconButton>
  
         
-        <ProfileMenu />
-        <SignIn size="sm" variant="text">
-          <span>SIGN IN</span>
-        </SignIn>
+        {isSignedIn ? (
+          // If signed in, show the profile dropdown
+          <ProfileMenu />
+        ) : (
+          // If not signed in, show the sign-in button
+          <SignInButton size="sm" variant="text">
+            <span>SIGN IN</span>
+          </SignInButton>
+        )}
       </div>
       <MobileNav open={isNavOpen} className="overflow-scroll">
         

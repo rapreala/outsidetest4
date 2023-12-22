@@ -118,7 +118,7 @@ model Session {
 model Account {
   id                 Int       @id @unique @default(autoincrement())
   userId             Int?
-  providerType       String
+  provider           String
   providerId         String
   providerAccountId  String
   refreshToken       String?

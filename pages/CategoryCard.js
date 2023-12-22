@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import ListingCard from './ListingCard';
 
+
 const CategoryCard = ({ category }) => {
   const { name, listings } = category;
 
@@ -18,7 +19,7 @@ const CategoryCard = ({ category }) => {
         <div>
       <h2 className="text-2xl font-bold text-gray-900 mb-4">{name}</h2>
       <Link href={`/categories/${name.toLowerCase()}`} className="text-blue-500 font-medium mt-4 inline-block">
-        View All {name} Listings
+        View All
       </Link>
       </div>
 
@@ -26,8 +27,6 @@ const CategoryCard = ({ category }) => {
         {firstFourListings.map((listing) => (
           <ListingCard key={listing.id} listing={listing} />
         ))}
-
-     
       </div>
 
     </div>
