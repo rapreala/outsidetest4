@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Flag from '../public/images/flag.jpg';
 // import ListingCard from './listings/[id]';
 import CategoryCard from './CategoryCard';
-// import TestimonialBlock from './TestimonialBlock';
+import TestimonialBlock from './TestimonialBlock';
 import Footer from './Footer';
 import {
   Card,
@@ -91,7 +91,7 @@ const HomePage = (props) => {
           <CategoryCard key={category.id} category={category} />
         ))}
       </main>
-      <Card color="transparent"className="p-10 rounded-lg shadow-md">
+      {/* <Card color="transparent"className="p-10 rounded-lg shadow-md">
       <Typography text="bold" variant="h2" color="blue-gray" className="mb-4">
         HEAR FROM OUR USERS
       </Typography>
@@ -129,8 +129,9 @@ const HomePage = (props) => {
       </CardBody>
     </Card>
 
-        {/* <TestimonialBlock /> */}
-      </Card>
+       
+      </Card> */}
+       <TestimonialBlock />
       <div>
         <Footer />
       </div>

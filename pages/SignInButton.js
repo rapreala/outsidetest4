@@ -8,7 +8,7 @@ const SignInButton = () => {
 
   const handleOpen = () => {
     // Use router.push to navigate to the desired route
-    router.push('/api/auth/signin');
+    router.push('/sign-in');
     setOpen((cur) => !cur);
   };
 
